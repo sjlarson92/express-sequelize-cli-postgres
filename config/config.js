@@ -1,4 +1,4 @@
-{
+const config = {
     "development": {
         "username": "sashalarson",
         "password": "password",
@@ -7,3 +7,5 @@
         "dialect": "postgres"
     }
 }
+
+export default config;
