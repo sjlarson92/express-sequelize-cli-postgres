@@ -5,7 +5,7 @@ and sets testEnvironment to node, which is suitable for backend testing.
 
 const jestConfig = {
     preset: 'ts-jest',
-    setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
+    setupFilesAfterEnv: ['<rootDir>/tests/test-setup.ts'],
     testEnvironment: 'node',
     testMatch: ['**/tests/**/*.test.ts'], // Only test files inside `tests/` folder
 };
