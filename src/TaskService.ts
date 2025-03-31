@@ -55,7 +55,8 @@ export const updateTaskById = async (req: Request<{ id: string }, {}, TaskReques
     const {name, isCompleted, description} = req.body
     console.log(`Updating Task with id: ${id}`)
 
-    const updatedTask = await Task.update(
+    // update for sequelize does not return the object, just the number of rows affected
+    await Task.update(
         {
             name,
             isCompleted,
@@ -63,6 +64,8 @@ export const updateTaskById = async (req: Request<{ id: string }, {}, TaskReques
         },
         {where: {id}},
     )
+
+    const updatedTask = await Task.findOne({where: {id}})
 
     res.send(updatedTask)
 }
