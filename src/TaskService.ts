@@ -50,17 +50,18 @@ export const createTask = async (req: Request<{}, {}, TaskRequest>, res: Respons
     res.send(newTask)
 }
 
-export const updateTaskById = (req: Request<{ id: string }, {}, TaskRequest>, res: Response) => {
+export const updateTaskById = async (req: Request<{ id: string }, {}, TaskRequest>, res: Response) => {
     const {id} = req.params
-    const {name, isCompleted} = req.body
+    const {name, isCompleted, description} = req.body
     console.log(`Updating Task with id: ${id}`)
 
-    const updatedTask = Task.update(
+    const updatedTask = await Task.update(
         {
             name,
-            isCompleted
+            isCompleted,
+            description
         },
-        {where: {id},},
+        {where: {id}},
     )
 
     res.send(updatedTask)
