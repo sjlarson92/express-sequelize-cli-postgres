@@ -10,6 +10,7 @@
     "test": "jest --forceExit",
     "migrate:up": "npx sequelize-cli db:migrate",
     "migrate:down": "npx sequelize-cli db:migrate:undo",
+    "migrate:create": "npx sequelize-cli migration:generate --name",
     "delete-all-tables": "./scripts/delete-all-tables.sh"
   },
   "repository": {

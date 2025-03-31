@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Tasks', {
+    await queryInterface.createTable('task', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,25 +10,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
-      isCompleted: {
-        type: Sequelize.BOOLEAN
-      },
-      description: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      is_completed: {
+        type: Sequelize.BOOLEAN,
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Tasks');
+  async down(queryInterface) {
+    await queryInterface.dropTable('task');
   }
 };
