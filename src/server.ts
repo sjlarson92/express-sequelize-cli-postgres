@@ -1,12 +1,12 @@
 import {getEnvironmentVariables} from "./environmentVariables";
 import app from "./app";
-import {getDbConnection} from "../sequelize";
+import {sequelizeDbConnection} from "./database";
+
 
 export const startServer = async () => {
     try {
         console.log(".... STARTING APP....")
-        const sequelize = await getDbConnection();
-        await sequelize.authenticate();
+        await sequelizeDbConnection.authenticate();
         console.log('>>> Connection to the database has been established successfully.');
     } catch (error) {
         const errorMessage = `>>>> Unable to connect to the database: ${error}`

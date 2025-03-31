@@ -1,27 +1,18 @@
-import {getDbConnection} from "../sequelize";
-import dotenv from "dotenv";
-import {Sequelize} from "sequelize-typescript";
-
-console.log('================= SETTING UP TESTS ===================');
-
-// Load test environment variables
-dotenv.config({path: '.env.test'});
-
-let sequelize: Sequelize | null;
+import {runTestMigrations, testSequelizeDbConnection} from "./test-database";
 
 beforeAll(async () => {
     console.log("=============== Getting Test DB connection ==================");
 
-    sequelize = await getDbConnection();
-    await sequelize.authenticate();
+    await testSequelizeDbConnection.authenticate();
+    await runTestMigrations()
 
     console.log("=============== TEST DB CONNECTION IS DONE! ==================");
 });
 
 afterAll(async () => {
     console.log("=============== Closing Test DB connection ==================");
-    if (sequelize) {
-        await sequelize.close();
-    }
+
+    await testSequelizeDbConnection.close();
+
     console.log("=============== TEST DB CONNECTION CLOSED! ==================");
 });
