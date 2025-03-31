@@ -9,7 +9,8 @@
     "dev": "nodemon src/index.ts",
     "test": "jest --forceExit",
     "migrate:up": "npx sequelize-cli db:migrate",
-    "migrate:down": "npx sequelize-cli db:migrate:undo"
+    "migrate:down": "npx sequelize-cli db:migrate:undo",
+    "delete-all-tables": "./scripts/delete-all-tables.sh"
   },
   "repository": {
     "type": "git",
