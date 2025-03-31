@@ -36,14 +36,12 @@ const runTestMigrations = async (sequelize: Sequelize) => {
         .filter(file => file.endsWith('.js'))
         .sort();
 
-    console.log(">>>> migrationFiles: ", migrationFiles)
+    console.log(`>>> Running migration files: ${migrationFiles}`);
 
     for (const file of migrationFiles) {
-        console.log(`>>> Running migration: ${file}`);
         const migration = require(path.join(migrationsPath, file));
 
         await migration.up(queryInterface, DataType);
-        console.log(`Completed migration: ${file}`);
     }
     console.log("All migrations completed successfully!");
 }

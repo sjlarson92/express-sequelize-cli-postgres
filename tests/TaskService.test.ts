@@ -1,21 +1,18 @@
 import request from 'supertest';
-import app from '../src/index'
 import Task from "../src/models/Task.model";
-import {TaskRequest} from "../src/TaskService";
+import app from "../src/app";
 
 describe("Task Service", () => {
 
     describe('getTasks', () => {
         it('Get tasks should return list of tasks', async () => {
-            const testTaskResponse = await request(app)
+            await request(app)
                 .post('/api/tasks')
                 .send({
                     name: 'Make penne pesto pasta!',
                     isCompleted: false,
                     description: "Namorada is sleepy"
                 })
-
-            console.log(`>>>> testTaskResponse.body: `, testTaskResponse.body)
 
             const response = await request(app)
                 .get('/api/tasks')
